@@ -29,6 +29,11 @@ ApplicationWindow {
             component: "modules/settings/QuickConfig.qml"
         },
         {
+            name: Translation.tr("Search"),
+            icon: "search",
+            component: "modules/settings/SearchConfig.qml"
+        },
+        {
             name: Translation.tr("General"),
             icon: "browse",
             iconRotation: 180,
@@ -233,7 +238,7 @@ ApplicationWindow {
 
                     active: Config.ready
                     Component.onCompleted: {
-                        source = root.pages[0].component
+                        source = root.pages[currentPage].component
                     }
 
                     Connections {

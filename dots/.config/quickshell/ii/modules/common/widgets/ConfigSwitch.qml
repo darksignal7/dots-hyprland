@@ -13,7 +13,52 @@ RippleButton {
     implicitHeight: contentItem.implicitHeight + 8 * 2
     font.pixelSize: Appearance.font.pixelSize.small
     
+    property string configKey // Config key to get and set the value
+
+    function getConfigValue() {
+        if (configKey === "")
+            return undefined;
+
+        const parts = configKey.split(".");
+        let ref = Config.options;
+        for (let i = 0; i < parts.length - 1; i++) {
+            ref = ref[parts[i]];
+        }
+        return ref[parts[parts.length - 1]];
+    }
+    
+    function setConfigValue(value) {
+        if (configKey === "")
+            return;
+
+        const parts = configKey.split(".");
+        let ref = Config.options;
+        for (let i = 0; i < parts.length - 1; i++) {
+            ref = ref[parts[i]];
+        }
+        ref[parts[parts.length - 1]] = value;
+    }
+
+    
     onClicked: checked = !checked
+    onCheckedChanged: setConfigValue(checked)
+
+    Component.onCompleted: {
+        // initialazing value
+        const value = getConfigValue();
+        if (value !== undefined)
+            checked = value;
+
+        if (typeof allSettingsModel !== "undefined" && allSettingsModel !== null) {
+            allSettingsModel.append({
+                type: "switch",
+                text: root.text,
+                icon: root.buttonIcon,
+                configKey: root.configKey
+            })
+        }
+    }
+
 
     contentItem: RowLayout {
         spacing: 10

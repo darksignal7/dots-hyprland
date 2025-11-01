@@ -23,10 +23,7 @@ ContentPage {
         ConfigSwitch {
             buttonIcon: "hearing"
             text: Translation.tr("Earbang protection")
-            checked: Config.options.audio.protection.enable
-            onCheckedChanged: {
-                Config.options.audio.protection.enable = checked;
-            }
+            configKey: "audio.protection.enable"
             StyledToolTip {
                 text: Translation.tr("Prevents abrupt increments and restricts volume limit")
             }
@@ -36,13 +33,10 @@ ContentPage {
             ConfigSpinBox {
                 icon: "arrow_warm_up"
                 text: Translation.tr("Max allowed increase")
-                value: Config.options.audio.protection.maxAllowedIncrease
+                configKey: "audio.protection.maxAllowedIncrease"
                 from: 0
                 to: 100
                 stepSize: 2
-                onValueChanged: {
-                    Config.options.audio.protection.maxAllowedIncrease = value;
-                }
             }
             ConfigSpinBox {
                 icon: "vertical_align_top"
@@ -67,24 +61,18 @@ ContentPage {
             ConfigSpinBox {
                 icon: "warning"
                 text: Translation.tr("Low warning")
-                value: Config.options.battery.low
+                configKey: "battery.low"
                 from: 0
                 to: 100
                 stepSize: 5
-                onValueChanged: {
-                    Config.options.battery.low = value;
-                }
             }
             ConfigSpinBox {
                 icon: "dangerous"
                 text: Translation.tr("Critical warning")
-                value: Config.options.battery.critical
+                configKey: "battery.critical"
                 from: 0
                 to: 100
                 stepSize: 5
-                onValueChanged: {
-                    Config.options.battery.critical = value;
-                }
             }
         }
         ConfigRow {
@@ -93,10 +81,7 @@ ContentPage {
             ConfigSwitch {
                 buttonIcon: "pause"
                 text: Translation.tr("Automatic suspend")
-                checked: Config.options.battery.automaticSuspend
-                onCheckedChanged: {
-                    Config.options.battery.automaticSuspend = checked;
-                }
+                configKey: "battery.automaticSuspend"
                 StyledToolTip {
                     text: Translation.tr("Automatically suspends the system when battery is low")
                 }
@@ -104,13 +89,10 @@ ContentPage {
             ConfigSpinBox {
                 enabled: Config.options.battery.automaticSuspend
                 text: Translation.tr("at")
-                value: Config.options.battery.suspend
+                configKey: "battery.suspend"
                 from: 0
                 to: 100
                 stepSize: 5
-                onValueChanged: {
-                    Config.options.battery.suspend = value;
-                }
             }
         }
         ConfigRow {
@@ -118,13 +100,10 @@ ContentPage {
             ConfigSpinBox {
                 icon: "charger"
                 text: Translation.tr("Full warning")
-                value: Config.options.battery.full
+                configKey: "battery.full"
                 from: 0
                 to: 101
                 stepSize: 5
-                onValueChanged: {
-                    Config.options.battery.full = value;
-                }
             }
         }
     }
@@ -263,18 +242,12 @@ ContentPage {
             ConfigSwitch {
                 buttonIcon: "battery_android_full"
                 text: Translation.tr("Battery")
-                checked: Config.options.sounds.battery
-                onCheckedChanged: {
-                    Config.options.sounds.battery = checked;
-                }
+                configKey: "sounds.battery"
             }
             ConfigSwitch {
                 buttonIcon: "av_timer"
                 text: Translation.tr("Pomodoro")
-                checked: Config.options.sounds.pomodoro
-                onCheckedChanged: {
-                    Config.options.sounds.pomodoro = checked;
-                }
+                configKey: "sounds.pomodoro"
             }
         }
     }
@@ -286,10 +259,7 @@ ContentPage {
         ConfigSwitch {
             buttonIcon: "pace"
             text: Translation.tr("Second precision")
-            checked: Config.options.time.secondPrecision
-            onCheckedChanged: {
-                Config.options.time.secondPrecision = checked;
-            }
+            configKey: "time.secondPrecision"
             StyledToolTip {
                 text: Translation.tr("Enable if you want clocks to show seconds accurately")
             }
@@ -336,18 +306,12 @@ ContentPage {
         ConfigSwitch {
             buttonIcon: "assignment"
             text: Translation.tr("Hide clipboard images copied from sussy sources")
-            checked: Config.options.workSafety.enable.clipboard
-            onCheckedChanged: {
-                Config.options.workSafety.enable.clipboard = checked;
-            }
+            configKey: "workSafety.enable.clipboard"
         }
         ConfigSwitch {
             buttonIcon: "wallpaper"
             text: Translation.tr("Hide sussy/anime wallpapers")
-            checked: Config.options.workSafety.enable.wallpaper
-            onCheckedChanged: {
-                Config.options.workSafety.enable.wallpaper = checked;
-            }
+            configKey: "workSafety.enable.wallpaper"
         }
     }
 }

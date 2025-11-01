@@ -31,24 +31,18 @@ ContentPage {
         ConfigSpinBox {
             icon: "timer_off"
             text: Translation.tr("Total duration timeout (s)")
-            value: Config.options.musicRecognition.timeout
+            configKey: "musicRecognition.timeout"
             from: 10
             to: 100
             stepSize: 2
-            onValueChanged: {
-                Config.options.musicRecognition.timeout = value;
-            }
         }
         ConfigSpinBox {
             icon: "av_timer"
             text: Translation.tr("Polling interval (s)")
-            value: Config.options.musicRecognition.interval
+            configKey: "musicRecognition.interval"
             from: 2
             to: 10
             stepSize: 1
-            onValueChanged: {
-                Config.options.musicRecognition.interval = value;
-            }
         }
     }
 
@@ -74,13 +68,10 @@ ContentPage {
         ConfigSpinBox {
             icon: "av_timer"
             text: Translation.tr("Polling interval (ms)")
-            value: Config.options.resources.updateInterval
+            configKey: "resources.updateInterval"
             from: 100
             to: 10000
             stepSize: 100
-            onValueChanged: {
-                Config.options.resources.updateInterval = value;
-            }
         }
         
     }
@@ -90,11 +81,9 @@ ContentPage {
         title: Translation.tr("Search")
 
         ConfigSwitch {
+            buttonIcon: "graph_1"
             text: Translation.tr("Use Levenshtein distance-based algorithm instead of fuzzy")
-            checked: Config.options.search.sloppy
-            onCheckedChanged: {
-                Config.options.search.sloppy = checked;
-            }
+            configKey: "search.sloppy"
             StyledToolTip {
                 text: Translation.tr("Could be better if you make a ton of typos,\nbut results can be weird and might not work with acronyms\n(e.g. \"GIMP\" might not give you the paint program)")
             }
