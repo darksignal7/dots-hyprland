@@ -52,7 +52,17 @@ ContentPage {
         )
     }
     
+    function getConfigValue(key) {
+        if (key === "")
+            return undefined;
 
+        const parts = key.split(".");
+        let ref = Config.options;
+        for (let i = 0; i < parts.length - 1; i++) {
+            ref = ref[parts[i]];
+        }
+        return ref[parts[parts.length - 1]];
+    }
 
     Repeater {
         model: sectionSourceList
@@ -88,8 +98,8 @@ ContentPage {
         }
 
         Repeater {
-            model: searchString.length > 1 ? currentFilteredSettings : undefined
-            //model: currentFilteredSettings
+            //model: searchString.length > 1 ? currentFilteredSettings : undefined
+            model: currentFilteredSettings
 
             delegate: ContentSubsection {
                 title: modelData.configKey
@@ -103,7 +113,10 @@ ContentPage {
                         item.configKey = modelData.configKey
                         if (modelData.type === "switch") 
                             item.buttonIcon = modelData.icon
+                            item.checked = getConfigValue(modelData.configKey)
+
                         if (modelData.type === "spinbox") 
+                            item.value = getConfigValue(modelData.configKey)
                             item.icon = modelData.icon
                     }
                 }

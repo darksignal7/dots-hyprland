@@ -49,14 +49,8 @@ RowLayout {
     value: getConfigValue()
     onValueChanged: setConfigValue(value)
     Component.onCompleted: {
-        if (typeof allSettingsModel !== "undefined" && allSettingsModel !== null) {
-            allSettingsModel.append({
-                type: "spinbox",
-                text: root.text,
-                icon: root.icon,
-                configKey: root.configKey
-            })
-        }
+        // TODO: ADD TO SEARCHCONFIG
+        
     }
 
     RowLayout {
